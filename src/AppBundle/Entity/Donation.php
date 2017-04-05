@@ -113,7 +113,7 @@ class Donation implements GeoPointInterface
         return $this->lastName.' '.$this->firstName.' ('.($this->amount / 100).' €)';
     }
 
-    public function finish(array $payboxPayload)
+    public function finish(array $payboxPayload): void
     {
         $this->finished = true;
         $this->payboxPayload = $payboxPayload;
@@ -125,6 +125,20 @@ class Donation implements GeoPointInterface
 
         if ($this->payboxResultCode === '00000') {
             $this->donatedAt = new \DateTime();
+        }
+    }
+
+    public function getTransactionId(): ?string
+    {
+        if (isset($this->payboxPayload['transaction'])) {
+            return $this->payboxPayload['transaction'];
+        }
+    }
+
+    public function getCardType(): ?string
+    {
+        if (isset($this->payboxPayload['card_type'])) {
+            return $this->payboxPayload['card_type'];
         }
     }
 

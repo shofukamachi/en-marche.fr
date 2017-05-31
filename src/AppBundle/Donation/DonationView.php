@@ -16,8 +16,8 @@ final class DonationView
     {
         $this->uuid = $uuid;
         $this->amount = $amount;
-        $this->transaction = $transaction ?: '';
-        $this->cardType = $cardType ?: '';
+        $this->transaction = (string) $transaction;
+        $this->cardType = (string) $cardType;
     }
 
     public static function createFromDonationRequest(DonationRequest $donation): self
@@ -52,19 +52,7 @@ final class DonationView
 
     public function getDonorProfile(): string
     {
-        if ($this->amount >= 5000) {
-            return 'mecenes';
-        }
-
-        if ($this->amount >= 500) {
-            return 'ambassadeurs';
-        }
-
-        if ($this->amount >= 50) {
-            return 'bienfaiteurs';
-        }
-
-        return 'soutiens';
+        return Donors::getProfile($this->amount);
     }
 
     public function getCurrency(): string

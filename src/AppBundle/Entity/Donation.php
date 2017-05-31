@@ -128,18 +128,14 @@ class Donation implements GeoPointInterface
         }
     }
 
-    public function getTransactionId(): ?string
+    public function getTransactionId(): string
     {
-        if (isset($this->payboxPayload['transaction'])) {
-            return $this->payboxPayload['transaction'];
-        }
+        return $this->payboxPayload['transaction'] ?? '';
     }
 
-    public function getCardType(): ?string
+    public function getCardType(): string
     {
-        if (isset($this->payboxPayload['card_type'])) {
-            return $this->payboxPayload['card_type'];
-        }
+        return $this->payboxPayload['card_type'] ?? '';
     }
 
     public function isFinished(): bool

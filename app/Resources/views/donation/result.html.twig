@@ -92,21 +92,21 @@
         {{ include('third_party/gtm.html.twig') }}
         <script type="text/javascript">
             dataLayer.push({
-                'transaction' :{
-                    'id':'{{ donation.transaction }}',
-                    'totalPriceATI':'{{ donation.amount }}',
-                    'totalPriceATE':'{{ donation.amount }}',
-                    'paymentMethod' :'carte bancaire',
-                    'cardType' :'{{ donation.cardType }}',
-                    'currency':'{{ donation.currency }}'
+                transaction: {
+                    id: '{{ donation.transaction }}',
+                    totalPriceATI: '{{ donation.amount }}',
+                    totalPriceATE: '{{ donation.amount }}',
+                    paymentMethod: 'carte bancaire',
+                    cardType: '{{ donation.cardType }}',
+                    currency: '{{ donation.currency }}'
                 },
-                'product':[{
-                    'id':'{{ donation.uuid }}',
-                    'name':'{{ is_in_subscription_process ? 'Don adhésion En Marche' : 'Don hors adhésion En Marche' }}',
-                    'price':'{{ donation.amount }}',
-                    'category':'{{ donation.donorProfile }}'
+                product: [{
+                    id: '{{ donation.uuid }}',
+                    name: '{{ is_in_subscription_process ? 'Don adhésion En Marche' : 'Don hors adhésion En Marche' }}',
+                    price: '{{ donation.amount }}',
+                    category: '{{ donation.donorProfile }}'
                 }],
-                'event':'transaction_event'
+                event: 'transaction_event'
             });
         </script>
     {% endif %}
